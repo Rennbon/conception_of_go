@@ -36,7 +36,7 @@ func main() {
 	a3 := 5
 	fmt.Println(a3)
 
-	//---------------进阶part1,array,slice,map,struct-------------------//
+	//---------------进阶part1 array,slice,map,struct-------------------//
 	arr := new([10]int)
 	fmt.Println("arr=", *arr)
 	// 10为len,20为cap
@@ -68,7 +68,7 @@ func main() {
 		fmt.Printf("map1 key is %s,value is %d", k, v)
 		fmt.Println()
 	}
-	//---------------进阶part2函数-------------------//
+	//---------------进阶part2 函数-------------------//
 	inner.SayHello()
 	//inner.sayBye()
 	inner.MakeMoney(10)
@@ -87,15 +87,28 @@ func main() {
 	fmt.Printf("It cost %[2]s %[1]g yuan to go out with Rose.", cost, "Leo")
 	fmt.Println()
 	//goto here
+	//---------------进阶part3 &*-------------------//
 	//这个方法执行完后，细细品味会对&*有进一步的理解，其实概念上Go全是传值操作的，通俗的大家会把转指针地址理解为传引用（这个花再多时间也要去理解）
-	err1, children := psv.Wedding("Jack", "Rose")
+	err1, children := psv.Wedding1("Jack", "Rose")
+	//err1, children := psv.Wedding("Peter", "Mary")
 	if err1 == nil {
 		fmt.Println(children)
+		//weding1
+		fmt.Println("children len is ", len(children), " cap is ", cap(children))
 		for _, child := range children {
 			//这里是&的，表示还是个指针，所以*后去指针的值才会没有&符号
 			fmt.Println(child)
 		}
+
+		/* 	//weding2
+		fmt.Println("children len is ", len(*children), " cap is ", cap(*children))
+		for _, child := range *children {
+			fmt.Println(child)
+		} */
+	} else {
+		fmt.Println(err1)
 	}
+	//copy(children, childrenClone)
 }
 
 //如果有 init() 函数则会先执行该函数
