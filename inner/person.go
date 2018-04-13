@@ -34,6 +34,7 @@ func sayBye() {
 func MakeMoney(money float64) {
 	//g e f b等等都可以试下，具体Printf可以网上搜下都有那些格式化字符
 	fmt.Printf("this is %g", money)
+	fmt.Println()
 }
 
 //多入参，多返回

@@ -53,14 +53,39 @@ func main() {
 	for i := 0; i < len(slice); i++ {
 		fmt.Println(slice[i])
 	}
+	//如果不需要index，可以使用“_”略过
 	for index, value := range slice {
 		fmt.Println("index:", index, ",value:", value)
+		//fmt.Println("index:", index)
+		//fmt.Println("value:", value)
+	}
+	//多次运行，map是无序的，类似redis中的set
+	map1 := map[string]int{"one": 1, "two": 2}
+	map1["four"] = 4
+	map1["three"] = 3
+
+	for k, v := range map1 {
+		fmt.Printf("map1 key is %s,value is %d", k, v)
+		fmt.Println()
 	}
 	//---------------进阶part2函数-------------------//
 	inner.SayHello()
 	//inner.sayBye()
 	inner.MakeMoney(10)
 
+	psv := &inner.PersonService{}
+	//_的妙用和if的简单介绍,注：一般C#中判断成功与否是用bool类型，go的话常见用error，当然error一般会全局定义，个人认为这样能更好的归类原因
+	if err, _ := psv.Dating1("Leo"); err != nil {
+		fmt.Println("dating fail ", err)
+	}
+	//goto的不正确用法，高中数学没考过120分以上的慎用 解开"here"和"goto here"注释后运行会造成闭环
+	//here:
+	_, cost := psv.Dating2("Rose")
+	//fmt.Printf使用
+	fmt.Printf("It cost %s %g yuan to go out with Rose.", "Leo", cost)
+	fmt.Println()
+	fmt.Printf("It cost %[2]s %[1]g yuan to go out with Rose.", cost, "Leo")
+	//goto here
 }
 
 //如果有 init() 函数则会先执行该函数
