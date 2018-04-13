@@ -67,3 +67,14 @@ func (p *PersonService) Dating2(name string) (error, float64) {
 	}
 	return nil, expenses
 }
+
+func (p *PersonService) Wedding(boy, girl string) (err error, children []*Person) {
+	if boy == "Jack" && girl == "Rose" {
+		children = append(children, &Person{Name: "王小二"})
+	} else if boy == "Peter" && girl == "Mary" {
+		children = append(children, &Person{Name: "Jack"}, &Person{Name: "Tom"})
+	} else {
+		err = errors.New("失散多年的亲兄妹.")
+	}
+	return
+}
