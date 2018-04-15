@@ -78,6 +78,9 @@ func (p *PersonService) Wedding1(boy, girl string) (err error, children []*Perso
 	}
 	return
 }
+
+//可能有人认为这才是最有效率的，其实不然，其实引用传递传的是”标头“，wedding1的底层逻辑硬描述就是wedding2的状况，这个方法只是帮助更容易理解wedding1，因为这个东西当初也坑了我好久
+//创建一个引用类型的变量时，创建的变量被称作标头，每个引用类型创建的标头值是包含一个指向底层数据结构的指针，标头专门是为了复制而设计的
 func (p *PersonService) Wedding2(boy, girl string) (err error, children *[]*Person) {
 	var err1 error
 	var children1 []*Person
