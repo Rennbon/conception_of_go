@@ -36,6 +36,12 @@ func main() {
 	a3 := 5
 	fmt.Println(a3)
 
+	//冒泡排序
+	/* bubbleArr := [...]int{1, 20, 3, 15, 9, 8, 4, 17}
+	bubbleSlice := bubbleArr[:] */
+	bubbleSlice := []int{1, 20, 3, 15, 9, 8, 4, 17}
+	fmt.Println(BubbleSort(bubbleSlice))
+
 	//---------------进阶part1 array,slice,map,struct-------------------//
 	arr := new([10]int)
 	fmt.Println("arr=", *arr)
@@ -59,6 +65,17 @@ func main() {
 		//fmt.Println("index:", index)
 		//fmt.Println("value:", value)
 	}
+
+	//最好在slice申明的时候把能预估的cap申明好，这样能节省空间
+	/* 	var slice2 []int = make([]int, 0, 10)
+	   	for index, value := range slice {
+	   		fmt.Println("that", &slice[index], slice[index])
+	   		fmt.Println("this", &value, value)
+	   		slice2 = append(slice2, value)
+	   		fmt.Println(cap(slice2))
+	   	}
+		   fmt.Println(slice2, cap(slice2)) */
+
 	//多次运行，map是无序的，类似redis中的set
 	map1 := map[string]int{"one": 1, "two": 2}
 	map1["four"] = 4
@@ -68,6 +85,7 @@ func main() {
 		fmt.Printf("map1 key is %s,value is %d", k, v)
 		fmt.Println()
 	}
+
 	//---------------进阶part2 函数-------------------//
 	inner.SayHello()
 	//inner.sayBye()
@@ -109,10 +127,29 @@ func main() {
 		fmt.Println(err1)
 	}
 	//copy(children, childrenClone)
+
 }
 
 //如果有 init() 函数则会先执行该函数
 func init() {
 	fmt.Println("a1=", a1)
 	fmt.Println("优先加载，一般用于某些特殊逻辑的初始化")
+}
+
+//冒泡
+func BubbleSort(array []int) []int {
+	flag := false
+	for i := 0; i < len(array); i++ {
+		for j := 0; j < len(array)-i-1; j++ {
+			if array[j] < array[j+1] {
+				array[j], array[j+1] = array[j+1], array[j]
+				flag = true
+			}
+		}
+		if !flag {
+			break
+		}
+		flag = false
+	}
+	return array
 }
