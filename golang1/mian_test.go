@@ -1,7 +1,7 @@
 package main
 
 import (
-	"demo/inner"
+	"demo/golang1/inner"
 	"fmt"
 	"testing"
 )

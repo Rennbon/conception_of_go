@@ -3,7 +3,7 @@ package main
 
 //导包,就是引用其他包
 import (
-	"demo/inner"
+	"demo/golang1/inner"
 	"fmt"
 	"reflect"
 )
